@@ -19,13 +19,13 @@ const TaskForm = React.memo(() => {
   );
 
   return (
-    <form onSubmit={handleSubmit} className={`task-form ${theme}-theme`}>
+    <form onSubmit={handleSubmit} className={`task-form ${theme}-theme flex-row`}>
       <input
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Add Task..."
-        className="task-input"
+        className="task-input flex-1"
       />
       <button className={`${theme}-task-button task-buttons`} type="submit">
         Add

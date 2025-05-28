@@ -2,7 +2,8 @@
 
 .task-form {
   .task-input {
-    width: 300px;
+    width: 400px;
+    flex: 1;
     padding: 10px 14px;
     font-size: 1rem;
     border-radius: 6px;
@@ -12,6 +13,12 @@
       border-color: $on-container-light;
       outline: none;
     }
+    @media (max-width: 766px) {
+      width: 200px;
+    }
+  }
+  @media (max-width: 766px) {
+    width: 100%;
   }
 }
 
@@ -30,4 +37,3 @@
     border: 1px solid darken($on-container-light, 20%);
   }
 }
-

@@ -6,8 +6,7 @@ import { ThemeContext } from "../context/themeContext";
 const TaskList = React.memo(() => {
   const { tasks, deleteTask, toggleComplete } = useContext(TaskContext);
   const [animatingTasks, setAnimatingTasks] = useState(new Set());
-  const {theme} = useContext(ThemeContext)
-
+  const { theme } = useContext(ThemeContext);
 
   const handleDelete = (id) => {
     setAnimatingTasks((prev) => new Set(prev).add(id));
@@ -18,11 +17,15 @@ const TaskList = React.memo(() => {
         updated.delete(id);
         return updated;
       });
-    }, 300); 
+    }, 300);
   };
 
   return (
-    <div className={`app ${theme === "dark" ? "dark-theme" : "light-theme"} task-list`}>
+    <div
+      className={`app ${
+        theme === "dark" ? "dark-theme" : "light-theme"
+      } task-list`}
+    >
       <div className="task-header task-row ">
         <div>Task Description</div>
         <div>Status</div>

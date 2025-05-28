@@ -13,7 +13,7 @@ const Home = () => {
         <h1>Task Manager</h1>
         <ThemeToggle />
       </div>
-      <div className="home-header">
+      <div className="home-header home-header-second">
         <FilterButtons />
         <TaskForm />
       </div>

@@ -1,11 +1,13 @@
 @import "../variables";
 
 .task-list {
+  width: 100%;
   .task-row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
     gap: 10px;
+    width: 100%;
     padding: 10px;
 
     margin-bottom: 8px;
