@@ -7,7 +7,7 @@ export function TaskProvider({ children }) {
   const [tasks, setTasks] = useLocalStorage("tasks", []);
   const [filter, setFilter] = useState("all");
 
-
+// ===================== Add New Task =====================
   const addTask = (text) => {
     if (!text.trim()) return;
     const newTask = {
@@ -19,10 +19,12 @@ export function TaskProvider({ children }) {
     setTasks([...tasks, newTask]);
   };
 
+  // ===================== Delete task =====================
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  // ===================== Mark as complete =====================
   const toggleComplete = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -31,14 +33,8 @@ export function TaskProvider({ children }) {
     );
   };
 
-  const reorderTasks = (result) => {
-    if (!result.destination) return;
-    const items = Array.from(tasks);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-    setTasks(items);
-  };
 
+  // ===================== Filter on Tasks =====================
   const filteredTasks = useMemo(() => {
     if (filter === "completed") return tasks.filter((t) => t.completed);
     if (filter === "pending") return tasks.filter((t) => !t.completed);
@@ -51,10 +47,8 @@ export function TaskProvider({ children }) {
         tasks: [...filteredTasks],
         addTask,
         deleteTask,
-        
         toggleComplete,
-        setFilter,
-        reorderTasks,
+        setFilter
       }}
     >
       {children}

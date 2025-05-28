@@ -1,22 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
 import "./TaskList.scss";
 import { ThemeContext } from "../context/themeContext";
 
 const TaskList = React.memo(() => {
   const { tasks, deleteTask, toggleComplete } = useContext(TaskContext);
-  const [renderedTasks, setRenderedTasks] = useState([]);
   const [animatingTasks, setAnimatingTasks] = useState(new Set());
   const {theme} = useContext(ThemeContext)
 
-  useEffect(() => {
-    document.body.className = theme;
-  }, [theme]);
-
-  const isDarkMode = theme === "dark";
-  useEffect(() => {
-    setRenderedTasks(tasks);
-  }, [tasks]);
 
   const handleDelete = (id) => {
     setAnimatingTasks((prev) => new Set(prev).add(id));
@@ -41,7 +32,7 @@ const TaskList = React.memo(() => {
       </div>
 
       <div className="task-body">
-        {renderedTasks.map((task) => (
+        {tasks?.map((task) => (
           <div
             key={task.id}
             className={`task-row 
