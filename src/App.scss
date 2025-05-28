@@ -1,0 +1,13 @@
+@import 'variables';
+
+body {
+  background-color: map-get($light-theme, background);
+  color: map-get($light-theme, text);
+}
+
+body.dark {
+  background-color: map-get($dark-theme, background);
+  color: map-get($dark-theme, text);
+}
+
+

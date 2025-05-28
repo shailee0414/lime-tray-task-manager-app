@@ -1,0 +1,46 @@
+// variables.scss
+
+// Light Theme
+$primary-color: #4caf50;
+$secondary-color: #f44336;
+$background-color: #f9f9f9;
+$background-light: #f9f9f9;
+$on-container-light: #ece9e9;
+$text-light: #000;
+
+// Dark Theme
+$primary-dark: #81c784;
+$secondary-dark: #ef9a9a;
+$background-color-dark: #2c2c2c;
+$background-dark: #2c2c2c;
+$on-container-dark: #242323;
+$on-secondary-container-dark :#424040;
+$text-dark: #f1f1f1;
+
+
+// Theme Map (for dynamic theming with CSS classes)
+$light-theme: (
+  background: $background-light,
+  text: $text-light,
+);
+
+$dark-theme: (
+  background: $background-dark,
+  text: $text-dark,
+  
+);
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-col {
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+}

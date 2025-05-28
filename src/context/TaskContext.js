@@ -1,0 +1,63 @@
+import React, { createContext, useState, useMemo } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+
+export const TaskContext = createContext();
+
+export function TaskProvider({ children }) {
+  const [tasks, setTasks] = useLocalStorage("tasks", []);
+  const [filter, setFilter] = useState("all");
+
+
+  const addTask = (text) => {
+    if (!text.trim()) return;
+    const newTask = {
+      id: Date.now(),
+      text,
+      completed: false,
+      createdAt: new Date().toLocaleString(),
+    };
+    setTasks([...tasks, newTask]);
+  };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const reorderTasks = (result) => {
+    if (!result.destination) return;
+    const items = Array.from(tasks);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setTasks(items);
+  };
+
+  const filteredTasks = useMemo(() => {
+    if (filter === "completed") return tasks.filter((t) => t.completed);
+    if (filter === "pending") return tasks.filter((t) => !t.completed);
+    return tasks;
+  }, [tasks, filter]);
+
+  return (
+    <TaskContext.Provider
+      value={{
+        tasks: [...filteredTasks],
+        addTask,
+        deleteTask,
+        
+        toggleComplete,
+        setFilter,
+        reorderTasks,
+      }}
+    >
+      {children}
+    </TaskContext.Provider>
+  );
+}

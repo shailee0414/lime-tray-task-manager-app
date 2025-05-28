@@ -1,0 +1,20 @@
+@import "../variables";
+
+.task-buttons {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border-radius: 6px;
+ 
+}
+
+.dark-task-button {
+    background-color: $on-secondary-container-dark;
+    color: $text-dark;
+     border: 1px solid $text-dark
+}
+
+.light-task-button{
+    background-color: $on-container-light;
+    color: $text-light;
+     border: 1px solid $text-light
+}
